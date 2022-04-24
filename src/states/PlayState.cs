@@ -9,6 +9,7 @@ public class PlayState : GameState
         InputSystems.Add(new SelectionSystem());
         InitSystems.Add(new SpawnGameBoardSystem());
         InitSystems.Add(new SpawnTokenSystem());
+        InitSystems.Add(new SpawnUISystem());
         UpdateSystems.Add(new TurnEndSystem());
     }
 }

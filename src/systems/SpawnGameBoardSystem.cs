@@ -2,19 +2,14 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public class SpawnGameBoardSystem : Resource, ISystem
+public class SpawnGameBoardSystem : ISystem
 {
     private static readonly Vector2 TileSize = new Vector2(64f, 64f);
 
     private PackedScene tileScene = GD.Load<PackedScene>("res://src/nodes/Tile.tscn");
-    private PackedScene uiScene = GD.Load<PackedScene>("res://src/nodes/UI.tscn");
 
-    private Commands commands;
-    
     public void Run(Commands commands)
     {
-        this.commands = commands;
-        
         GD.Randomize();
         
         var gameBoard = new GameBoard();
@@ -50,17 +45,7 @@ public class SpawnGameBoardSystem : Resource, ISystem
         });
         
         commands.AddResource(new CurrentPlayer(-1));
-        
-        var ui = uiScene.Instance<UI>();
-        ui.Connect(nameof(UI.TurnEndPressed), this, nameof(OnTurnEndPressed));
-        gameState.AddChild(ui);
-        commands.AddResource(ui);
-        
-        commands.Send<TurnEndEvent>();
-    }
 
-    private void OnTurnEndPressed()
-    {
         commands.Send<TurnEndEvent>();
     }
 }
