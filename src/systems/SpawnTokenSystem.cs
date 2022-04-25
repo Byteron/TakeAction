@@ -9,7 +9,7 @@ public class SpawnTokenSystem : Resource, ISystem
     private static readonly (int, int)[] startPositions1 = new (int, int)[] { (1, 0), (2, 0), (3, 0) };
     private static readonly (int, int)[] startPositions2 = new (int, int)[] { (1, 4), (2, 4), (3, 4) };
     
-    private PackedScene rabbitScene = GD.Load<PackedScene>("res://src/nodes/Rabbit.tscn");
+    private PackedScene tokenScene = GD.Load<PackedScene>("res://src/nodes/Token.tscn");
 
     
     public void Run(Commands commands)
@@ -22,13 +22,13 @@ public class SpawnTokenSystem : Resource, ISystem
             var tileEntity = gameBoard.Tiles[(x, y)];
             var pos = new Position(new Vector2(x, y));
             
-            var rabbitNode = rabbitScene.Instance<Rabbit>();
-            gameState.AddChild(rabbitNode);
+            var tokenNode = tokenScene.Instance<Token>();
+            gameState.AddChild(tokenNode);
 
-            rabbitNode.Position = pos.Value * TileSize + TileSize / 2;
+            tokenNode.Position = pos.Value * TileSize + TileSize / 2;
             
-            var rabbitEntity = commands.Spawn(rabbitNode);
-            rabbitEntity.Add(pos).Add(new Team(0));
+            var rabbitEntity = commands.Spawn(tokenNode);
+            rabbitEntity.Add(pos).Add(new Team(0)).Add(new Health(10));
 
             tileEntity.Add(new HasToken(rabbitEntity));
         }
@@ -38,13 +38,13 @@ public class SpawnTokenSystem : Resource, ISystem
             var tileEntity = gameBoard.Tiles[(x, y)];
             var pos = new Position(new Vector2(x, y));
             
-            var rabbitNode = rabbitScene.Instance<Rabbit>();
-            gameState.AddChild(rabbitNode);
+            var tokenNode = tokenScene.Instance<Token>();
+            gameState.AddChild(tokenNode);
 
-            rabbitNode.Position = pos.Value * TileSize + TileSize / 2;
+            tokenNode.Position = pos.Value * TileSize + TileSize / 2;
             
-            var rabbitEntity = commands.Spawn(rabbitNode);
-            rabbitEntity.Add(pos).Add(new Team(1));
+            var rabbitEntity = commands.Spawn(tokenNode);
+            rabbitEntity.Add(pos).Add(new Team(1)).Add(new Health(10));
 
             tileEntity.Add(new HasToken(rabbitEntity));
         }

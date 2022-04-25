@@ -6,10 +6,15 @@ public class PlayState : GameState
 {
     public override void Init(GameStateController gameStates)
     {
+        InitSystems.Add(new SpawnGameBoardSystem())
+            .Add(new SpawnTokenSystem())
+            .Add(new SpawnUISystem());
+        
         InputSystems.Add(new SelectionSystem());
-        InitSystems.Add(new SpawnGameBoardSystem());
-        InitSystems.Add(new SpawnTokenSystem());
-        InitSystems.Add(new SpawnUISystem());
-        UpdateSystems.Add(new TurnEndSystem());
+        
+        UpdateSystems.Add(new ActionSystem())
+            .Add(new MoveEventSystem())
+            .Add(new DamageEventSystem())
+            .Add(new TurnEndSystem());
     }
 }

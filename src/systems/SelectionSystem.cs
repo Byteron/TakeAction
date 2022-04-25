@@ -7,7 +7,6 @@ public class SelectionSystem : ISystem
     public void Run(Commands commands)
     {
         var gameBoard = commands.GetResource<GameBoard>();
-        var currentPlayer = commands.GetResource<CurrentPlayer>();
         var selectedToken = commands.GetResource<SelectedToken>();
         var sceneTree = commands.GetResource<SceneTree>();
         
@@ -29,10 +28,10 @@ public class SelectionSystem : ISystem
                 GD.Print(cell, " selected");
                 var tokenEntity = tile.Get<HasToken>().Entity;
 
-                if (tokenEntity.Get<Team>().Value == currentPlayer.Value)
+                if (tokenEntity.Get<Team>().Value == gameBoard.CurrentPlayer)
                 {
                     selectedToken.Entity = tile.Get<HasToken>().Entity;
-                    selectedToken.Entity.Get<Node<Sprite>>().Value.Scale = Vector2.One  * 0.9f;
+                    selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One  * 0.9f;
                 }
             }
         }
@@ -40,7 +39,7 @@ public class SelectionSystem : ISystem
         if (Input.IsActionJustPressed("deselect") && selectedToken.Entity.IsAlive)
         {
             GD.Print("deselected");
-            selectedToken.Entity.Get<Node<Sprite>>().Value.Scale = Vector2.One * 0.8f;
+            selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One * 0.8f;
             selectedToken.Entity = default;
         }
     }
