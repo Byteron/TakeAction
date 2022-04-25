@@ -13,7 +13,7 @@ public class SelectionSystem : ISystem
         if (Input.IsActionJustPressed("select") && !selectedToken.Entity.IsAlive)
         {
             var mousePosition = sceneTree.Root.GetMousePosition();
-            var tilePosition = mousePosition / (Vector2.One * 64f);
+            var tilePosition = mousePosition / GameBoard.TileSize;
             var cell = ((int)tilePosition.x, (int)tilePosition.y);
 
             if (!gameBoard.Tiles.ContainsKey(cell))

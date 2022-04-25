@@ -4,8 +4,6 @@ using RelEcs.Godot;
 
 public class SpawnTokenSystem : Resource, ISystem
 {
-    private static readonly Vector2 TileSize = new Vector2(64f, 64f);
-    
     private static readonly (int, int)[] startPositions1 = new (int, int)[] { (1, 0), (2, 0), (3, 0) };
     private static readonly (int, int)[] startPositions2 = new (int, int)[] { (1, 4), (2, 4), (3, 4) };
     
@@ -25,12 +23,12 @@ public class SpawnTokenSystem : Resource, ISystem
             var tokenNode = tokenScene.Instance<Token>();
             gameState.AddChild(tokenNode);
 
-            tokenNode.Position = pos.Value * TileSize + TileSize / 2;
+            tokenNode.Position = pos.Value * GameBoard.TileSize + GameBoard.TileSize / 2;
             
-            var rabbitEntity = commands.Spawn(tokenNode);
-            rabbitEntity.Add(pos).Add(new Team(0)).Add(new Health(10));
+            var tokenEntity = commands.Spawn(tokenNode);
+            tokenEntity.Add(pos).Add(new Team(0)).Add(new Health(10));
 
-            tileEntity.Add(new HasToken(rabbitEntity));
+            tileEntity.Add(new HasToken(tokenEntity));
         }
         
         foreach (var (x, y) in startPositions2)
@@ -41,12 +39,12 @@ public class SpawnTokenSystem : Resource, ISystem
             var tokenNode = tokenScene.Instance<Token>();
             gameState.AddChild(tokenNode);
 
-            tokenNode.Position = pos.Value * TileSize + TileSize / 2;
+            tokenNode.Position = pos.Value * GameBoard.TileSize + GameBoard.TileSize / 2;;
             
-            var rabbitEntity = commands.Spawn(tokenNode);
-            rabbitEntity.Add(pos).Add(new Team(1)).Add(new Health(10));
+            var tokenEntity = commands.Spawn(tokenNode);
+            tokenEntity.Add(pos).Add(new Team(1)).Add(new Health(10));
 
-            tileEntity.Add(new HasToken(rabbitEntity));
+            tileEntity.Add(new HasToken(tokenEntity));
         }
 
         commands.AddResource(new SelectedToken());

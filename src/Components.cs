@@ -54,14 +54,8 @@ public struct Position
     public Vector2 Value => new Vector2(X, Y);
     public Vector2 World => new Vector2(X, Y) * GameBoard.TileSize;
     public Vector2 FixedWorld => new Vector2(X, Y) * GameBoard.TileSize + GameBoard.TileSize / 2;
-    
-    public bool IsNeighbor(Position other)
-    {
-        var diff_x = Mathf.Abs(X - other.X);
-        var diff_y = Mathf.Abs(Y - other.Y);
-        GD.Print(diff_x, " / ", diff_y);
-        return  diff_x == 1 || diff_y == 1;
-    }
+
+    public bool IsNeighbor(Position other) => Mathf.Abs(X - other.X) == 1 || Mathf.Abs(Y - other.Y) == 1;
 }
 
 public struct HasToken

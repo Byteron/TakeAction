@@ -7,6 +7,7 @@ public class ActionSystem : ISystem
     public void Run(Commands commands)
     {
         var gameBoard = commands.GetResource<GameBoard>();
+        var playerEntity = gameBoard.GetCurrentPlayerEntity();
         var selectedToken = commands.GetResource<SelectedToken>();
         var sceneTree = commands.GetResource<SceneTree>();
         

@@ -4,7 +4,7 @@ using RelEcs;
 
 public class GameBoard
 {
-    public static Vector2 TileSize = Vector2.One * 64f;
+    public static Vector2 TileSize = Vector2.One * 128f;
     
     public Dictionary<(int, int), Entity> Tiles = new Dictionary<(int, int), Entity>();
     public Dictionary<int, Entity> Players = new Dictionary<int, Entity>();
@@ -12,7 +12,7 @@ public class GameBoard
 
     public Entity GetCurrentPlayerEntity()
     {
-        return Players[CurrentPlayer];
+        return CurrentPlayer < 0 ? default : Players[CurrentPlayer];
     }
 }
 
