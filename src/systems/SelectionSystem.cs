@@ -7,6 +7,7 @@ public class SelectionSystem : ISystem
     public void Run(Commands commands)
     {
         var gameBoard = commands.GetResource<GameBoard>();
+        var currentPlayer = gameBoard.GetCurrentPlayerEntity();
         var selectedToken = commands.GetResource<SelectedToken>();
         var sceneTree = commands.GetResource<SceneTree>();
         
@@ -16,11 +17,8 @@ public class SelectionSystem : ISystem
             var tilePosition = mousePosition / GameBoard.TileSize;
             var cell = ((int)tilePosition.x, (int)tilePosition.y);
 
-            if (!gameBoard.Tiles.ContainsKey(cell))
-            {
-                return;
-            }
-            
+            if (!gameBoard.Tiles.ContainsKey(cell)) return;
+
             var tile = gameBoard.Tiles[cell];
 
             if (tile.Has<HasToken>())
@@ -28,7 +26,7 @@ public class SelectionSystem : ISystem
                 GD.Print(cell, " selected");
                 var tokenEntity = tile.Get<HasToken>().Entity;
 
-                if (tokenEntity.Get<Team>().Value == gameBoard.CurrentPlayer)
+                if (tokenEntity.Has<BelongsTo>(currentPlayer))
                 {
                     selectedToken.Entity = tile.Get<HasToken>().Entity;
                     selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One;

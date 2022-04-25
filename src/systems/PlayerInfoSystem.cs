@@ -12,11 +12,8 @@ public class PlayerInfoSystem : ISystem
         var playerEntity = gameBoard.GetCurrentPlayerEntity();
         var ui = commands.GetResource<UI>();
         
-        if (!playerEntity.IsAlive || ui.ActionLabel == null)
-        {
-            return;
-        }
-        
+        if (!playerEntity.IsAlive || ui.ActionLabel == null) return;
+
         ui.ActionLabel.Text = $"Actions: {playerEntity.Get<Actions>().Value}";
         ui.TurnLabel.Text = $"Turn: {gameBoard.CurrentPlayer}";
     }

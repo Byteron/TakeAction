@@ -21,11 +21,8 @@ public class DamageEventSystem : ISystem
             ref var health = ref e.Entity.Get<Health>();
             health.Hurt(e.Amount);
 
-            if (health.IsAlive)
-            {
-                return;
-            }
-            
+            if (health.IsAlive) return;
+
             GD.Print("Entity Died!");
             
             var position = e.Entity.Get<Position>();

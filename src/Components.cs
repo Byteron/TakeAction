@@ -3,11 +3,7 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public struct Team
-{
-    public int Value;
-    public Team(int value) => Value = value;
-}
+public struct BelongsTo { }
 
 public struct Health
 {

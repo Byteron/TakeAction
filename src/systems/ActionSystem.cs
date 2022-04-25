@@ -36,12 +36,9 @@ public class ActionSystem : ISystem
         if (!targetTileEntity.Has<HasToken>())
         {
             var targetTile = targetTileEntity.Get<Node<Tile>>().Value;
-            
-            if (actions.Value < token.Cost + targetTile.Cost)
-            {
-                return;
-            }
-            
+
+            if (actions.Value < token.Cost + targetTile.Cost) return;
+
             GD.Print("Move Event Spawned!");
             commands.Send(new MoveEvent() { Entity = selectedToken.Entity, Cell = targetCell });
             actions.Value -= token.Cost + targetTile.Cost;
@@ -60,7 +57,7 @@ public class ActionSystem : ISystem
                 
             var targetToken = targetTileEntity.Get<HasToken>().Entity;
 
-            if (targetToken.Get<Team>().Value == selectedToken.Entity.Get<Team>().Value) return;
+            if (targetToken.Has<BelongsTo>(playerEntity)) return;
 
             commands.Send(new DamageEvent() { Entity = targetTileEntity.Get<HasToken>().Entity, Amount = 1 });
             actions.Value -= token.Cost;

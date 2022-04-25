@@ -13,8 +13,8 @@ public class SpawnGameBoardSystem : ISystem
         var gameBoard = new GameBoard();
         var gameState = commands.GetResource<CurrentGameState>().State;
 
-        var player1 = commands.Spawn().Add(new Actions(5)).Add(new Team(0));
-        var player2 = commands.Spawn().Add(new Actions(5)).Add(new Team(1));
+        var player1 = commands.Spawn().Add(new Actions(5));
+        var player2 = commands.Spawn().Add(new Actions(5));
         
         gameBoard.Players.Add(0, player1);
         gameBoard.Players.Add(1, player2);
