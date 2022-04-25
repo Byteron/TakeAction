@@ -2,6 +2,7 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
+// inherits Godot.Resource because it needs to be a Godot Object to be able to connect to godot signals
 public class SpawnUISystem : Resource, ISystem
 {
     private PackedScene uiScene = GD.Load<PackedScene>("res://src/nodes/UI.tscn");

@@ -2,13 +2,12 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public class SpawnTokenSystem : Resource, ISystem
+public class SpawnTokenSystem : ISystem
 {
     private static readonly (int, int)[] startPositions1 = new (int, int)[] { (1, 0), (2, 0), (3, 0) };
     private static readonly (int, int)[] startPositions2 = new (int, int)[] { (1, 4), (2, 4), (3, 4) };
     
     private PackedScene tokenScene = GD.Load<PackedScene>("res://src/nodes/Token.tscn");
-
     
     public void Run(Commands commands)
     {   
