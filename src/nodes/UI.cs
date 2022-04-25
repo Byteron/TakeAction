@@ -7,10 +7,12 @@ public class UI : CanvasLayer
     public delegate void TurnEndPressed();
 
     public Label TurnLabel;
+    public Label ActionLabel;
 
     public override void _Ready()
     {
         TurnLabel = GetNode<Label>("TurnLabel");
+        ActionLabel = GetNode<Label>("ActionLabel");
     }
 
     private void OnTurnEndPressed()

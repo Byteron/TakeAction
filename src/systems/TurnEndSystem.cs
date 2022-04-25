@@ -14,16 +14,17 @@ public class TurnEndSystem : ISystem
             
             var gameBoard = commands.GetResource<GameBoard>();
             var selectedToken = commands.GetResource<SelectedToken>();
-            var ui = commands.GetResource<UI>();
-            
+
             if (selectedToken.Entity.IsAlive)
             {
-                selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One *0.8f;
+                selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One *0.9f;
                 selectedToken.Entity = default;
             }
             
             gameBoard.CurrentPlayer = (gameBoard.CurrentPlayer + 1) % 2;
-            ui.TurnLabel.Text = "" + gameBoard.CurrentPlayer;
+
+            var playerEntity = gameBoard.GetCurrentPlayerEntity();
+            playerEntity.Get<Actions>().Value = 5;
         });
     }
 }

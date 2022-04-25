@@ -42,7 +42,7 @@ public class SpawnGameBoardSystem : ISystem
         commands.ForEach((ref Node<Tile> tile, ref Node<Label> label) =>
         {
             tile.Value.Cost = (int)(GD.RandRange(-1, 1) + GD.RandRange(-1, 1) + GD.RandRange(-1, 1));
-            label.Value.Text = "" + tile.Value.Cost;
+            label.Value.Text = "" + -tile.Value.Cost;
         });
 
         commands.Send<TurnEndEvent>();

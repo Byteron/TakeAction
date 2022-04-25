@@ -31,7 +31,7 @@ public class SelectionSystem : ISystem
                 if (tokenEntity.Get<Team>().Value == gameBoard.CurrentPlayer)
                 {
                     selectedToken.Entity = tile.Get<HasToken>().Entity;
-                    selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One  * 0.9f;
+                    selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One;
                 }
             }
         }
@@ -39,7 +39,7 @@ public class SelectionSystem : ISystem
         if (Input.IsActionJustPressed("deselect") && selectedToken.Entity.IsAlive)
         {
             GD.Print("deselected");
-            selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One * 0.8f;
+            selectedToken.Entity.Get<Node<Token>>().Value.Scale = Vector2.One * 0.9f;
             selectedToken.Entity = default;
         }
     }

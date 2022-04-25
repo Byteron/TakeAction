@@ -19,6 +19,7 @@ public class PlayState : GameState
             .Add(new MoveEventSystem())
             .Add(new DamageEventSystem())
             .Add(new TokenInfoSystem())
+            .Add(new PlayerInfoSystem())
             .Add(new TurnEndSystem());
     }
 }

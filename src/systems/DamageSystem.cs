@@ -17,7 +17,7 @@ public class DamageEventSystem : ISystem
             GD.Print("Damage Event Received!");
             
             var gameBoard = commands.GetResource<GameBoard>();
-            
+
             ref var health = ref e.Entity.Get<Health>();
             health.Hurt(e.Amount);
 
