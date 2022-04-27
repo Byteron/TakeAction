@@ -29,16 +29,16 @@ namespace RelEcs.Godot
 
         public GameStateController()
         {
-            world.AddResource(this);
+            world.AddElement(this);
             
-            world.AddResource(new CurrentGameState());
-            world.AddResource(new GodotInputEvent());
-            world.AddResource(new DeltaTime());
+            world.AddElement(new CurrentGameState());
+            world.AddElement(new GodotInputEvent());
+            world.AddElement(new DeltaTime());
         }
 
         public override void _Ready()
         {
-            world.AddResource(GetTree());
+            world.AddElement(GetTree());
         }
 
         public override void _UnhandledInput(InputEvent e)
@@ -49,7 +49,7 @@ namespace RelEcs.Godot
             }
 
             var currentState = stack.Peek();
-            world.GetResource<GodotInputEvent>().Event = e;
+            world.GetElement<GodotInputEvent>().Event = e;
             currentState.InputSystems.Run(world);
         }
 
@@ -61,7 +61,7 @@ namespace RelEcs.Godot
             }
 
             var currentState = stack.Peek();
-            world.GetResource<DeltaTime>().Value = delta;
+            world.GetElement<DeltaTime>().Value = delta;
             currentState.UpdateSystems.Run(world);
 
             world.Tick();
@@ -105,7 +105,7 @@ namespace RelEcs.Godot
             if (stack.Count > 0)
             {
                 currentState = stack.Peek();
-                world.GetResource<CurrentGameState>().State = currentState;
+                world.GetElement<CurrentGameState>().State = currentState;
                 currentState.ContinueSystems.Run(world);
             }
         }
@@ -128,7 +128,7 @@ namespace RelEcs.Godot
             newState.Name = newState.GetType().ToString();
             stack.Push(newState);
             AddChild(newState);
-            world.GetResource<CurrentGameState>().State = newState;
+            world.GetElement<CurrentGameState>().State = newState;
             newState.Init(this);
             newState.InitSystems.Run(world);
         }
@@ -146,7 +146,7 @@ namespace RelEcs.Godot
             newState.Name = newState.GetType().ToString();
             stack.Push(newState);
             AddChild(newState);
-            world.GetResource<CurrentGameState>().State = newState;
+            world.GetElement<CurrentGameState>().State = newState;
             newState.Init(this);
             newState.InitSystems.Run(world);
         }

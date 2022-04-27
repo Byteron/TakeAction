@@ -12,8 +12,8 @@ public class TurnEndSystem : ISystem
         {
             GD.Print("Turn End Pressed");
             
-            var gameBoard = commands.GetResource<GameBoard>();
-            var selectedToken = commands.GetResource<SelectedToken>();
+            var gameBoard = commands.GetElement<GameBoard>();
+            var selectedToken = commands.GetElement<SelectedToken>();
 
             if (selectedToken.Entity.IsAlive)
             {

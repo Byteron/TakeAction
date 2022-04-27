@@ -6,10 +6,10 @@ public class SelectionSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        var gameBoard = commands.GetResource<GameBoard>();
+        var gameBoard = commands.GetElement<GameBoard>();
+        var selectedToken = commands.GetElement<SelectedToken>();
+        var sceneTree = commands.GetElement<SceneTree>();
         var currentPlayer = gameBoard.GetCurrentPlayerEntity();
-        var selectedToken = commands.GetResource<SelectedToken>();
-        var sceneTree = commands.GetResource<SceneTree>();
         
         if (Input.IsActionJustPressed("select") && !selectedToken.Entity.IsAlive)
         {

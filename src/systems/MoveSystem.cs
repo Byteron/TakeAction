@@ -16,7 +16,7 @@ public class MoveEventSystem : ISystem
         commands.Receive((MoveEvent e) =>
         {
             GD.Print("Move Event Received!");
-            var gameBoard = commands.GetResource<GameBoard>();
+            var gameBoard = commands.GetElement<GameBoard>();
             
             var token = e.Entity.Get<Node<Token>>().Value;
             ref var position = ref e.Entity.Get<Position>();

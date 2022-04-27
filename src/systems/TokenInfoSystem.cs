@@ -7,7 +7,7 @@ public class TokenInfoSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        var gameBoard = commands.GetResource<GameBoard>();
+        var gameBoard = commands.GetElement<GameBoard>();
 
         if (gameBoard.Players.Count == 0) return;
 

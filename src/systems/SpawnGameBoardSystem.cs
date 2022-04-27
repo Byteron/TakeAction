@@ -11,7 +11,7 @@ public class SpawnGameBoardSystem : ISystem
         GD.Randomize();
         
         var gameBoard = new GameBoard();
-        var gameState = commands.GetResource<CurrentGameState>().State;
+        var gameState = commands.GetElement<CurrentGameState>().State;
 
         var player1 = commands.Spawn().Add(new Actions(5));
         var player2 = commands.Spawn().Add(new Actions(5));
@@ -37,7 +37,7 @@ public class SpawnGameBoardSystem : ISystem
             }
         }
         
-        commands.AddResource(gameBoard);
+        commands.AddElement(gameBoard);
 
         commands.ForEach((ref Node<Tile> tile, ref Node<Label> label) =>
         {

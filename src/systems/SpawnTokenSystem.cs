@@ -11,10 +11,10 @@ public class SpawnTokenSystem : ISystem
     
     public void Run(Commands commands)
     {   
-        var gameBoard = commands.GetResource<GameBoard>();
+        var gameBoard = commands.GetElement<GameBoard>();
         var playerEntity1 = gameBoard.Players[0];
         var playerEntity2 = gameBoard.Players[1];
-        var gameState = commands.GetResource<CurrentGameState>().State;
+        var gameState = commands.GetElement<CurrentGameState>().State;
 
         foreach (var (x, y) in startPositions1)
         {
@@ -48,6 +48,6 @@ public class SpawnTokenSystem : ISystem
             tileEntity.Add(new HasToken(tokenEntity));
         }
 
-        commands.AddResource(new SelectedToken());
+        commands.AddElement(new SelectedToken());
     }
 }

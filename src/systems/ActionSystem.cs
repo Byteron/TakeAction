@@ -6,15 +6,15 @@ public class ActionSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        var selectedToken = commands.GetResource<SelectedToken>();
+        var selectedToken = commands.GetElement<SelectedToken>();
 
         if (!Input.IsActionJustPressed("select") || !selectedToken.Entity.IsAlive) return;
         
         GD.Print("Try Action");
             
-        var gameBoard = commands.GetResource<GameBoard>();
+        var gameBoard = commands.GetElement<GameBoard>();
         var playerEntity = gameBoard.GetCurrentPlayerEntity();
-        var sceneTree = commands.GetResource<SceneTree>();
+        var sceneTree = commands.GetElement<SceneTree>();
             
         ref var actions = ref playerEntity.Get<Actions>();
         var token = selectedToken.Entity.Get<Node<Token>>().Value;

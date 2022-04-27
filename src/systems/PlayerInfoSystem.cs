@@ -8,9 +8,9 @@ public class PlayerInfoSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        var gameBoard = commands.GetResource<GameBoard>();
+        var gameBoard = commands.GetElement<GameBoard>();
         var playerEntity = gameBoard.GetCurrentPlayerEntity();
-        var ui = commands.GetResource<UI>();
+        var ui = commands.GetElement<UI>();
         
         if (!playerEntity.IsAlive || ui.ActionLabel == null) return;
 

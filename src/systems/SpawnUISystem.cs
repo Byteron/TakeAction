@@ -13,12 +13,12 @@ public class SpawnUISystem : Resource, ISystem
     {
         this.commands = commands;
 
-        var gameState = commands.GetResource<CurrentGameState>().State;
+        var gameState = commands.GetElement<CurrentGameState>().State;
         
         var ui = uiScene.Instance<UI>();
         ui.Connect(nameof(UI.TurnEndPressed), this, nameof(OnTurnEndPressed));
         gameState.AddChild(ui);
-        commands.AddResource(ui);
+        commands.AddElement(ui);
     }
 
     private void OnTurnEndPressed()
