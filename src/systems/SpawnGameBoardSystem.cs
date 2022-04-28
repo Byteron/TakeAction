@@ -45,6 +45,6 @@ public class SpawnGameBoardSystem : ISystem
             label.Value.Text = "" + -tile.Value.Cost;
         });
 
-        commands.Send<TurnEndEvent>();
+        commands.Send<TurnEnd>();
     }
 }

@@ -3,19 +3,19 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public struct MoveEvent
+public struct Move
 {
     public Entity Entity;
     public (int, int) Cell;
 }
 
-public class MoveEventSystem : ISystem
+public class MoveSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        commands.Receive((MoveEvent e) =>
+        commands.Receive((Move e) =>
         {
-            GD.Print("Move Event Received!");
+            GD.Print("Move Received!");
             var gameBoard = commands.GetElement<GameBoard>();
             
             var token = e.Entity.Get<Node<Token>>().Value;

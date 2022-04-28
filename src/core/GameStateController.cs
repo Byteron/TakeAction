@@ -9,7 +9,7 @@ namespace RelEcs.Godot
         public GameState State;
     }
 
-    public class GodotInputEvent
+    public struct GodotInput
     {
         public InputEvent Event;
     }
@@ -32,7 +32,6 @@ namespace RelEcs.Godot
             world.AddElement(this);
             
             world.AddElement(new CurrentGameState());
-            world.AddElement(new GodotInputEvent());
             world.AddElement(new DeltaTime());
         }
 
@@ -49,7 +48,7 @@ namespace RelEcs.Godot
             }
 
             var currentState = stack.Peek();
-            world.GetElement<GodotInputEvent>().Event = e;
+            // TODO: insert godot event as trigger
             currentState.InputSystems.Run(world);
         }
 

@@ -2,19 +2,19 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public struct DamageEvent
+public struct Damage
 {
     public Entity Entity;
     public int Amount;
 }
 
-public class DamageEventSystem : ISystem
+public class DamageSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        commands.Receive((DamageEvent e) =>
+        commands.Receive((Damage e) =>
         {
-            GD.Print("Damage Event Received!");
+            GD.Print("Damage Received!");
             
             var gameBoard = commands.GetElement<GameBoard>();
 

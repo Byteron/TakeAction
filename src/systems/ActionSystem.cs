@@ -39,8 +39,8 @@ public class ActionSystem : ISystem
 
             if (actions.Value < token.Cost + targetTile.Cost) return;
 
-            GD.Print("Move Event Spawned!");
-            commands.Send(new MoveEvent() { Entity = selectedToken.Entity, Cell = targetCell });
+            GD.Print("Move Spawned!");
+            commands.Send(new Move() { Entity = selectedToken.Entity, Cell = targetCell });
             actions.Value -= token.Cost + targetTile.Cost;
             token.Cycle();
             token.Scale = Vector2.One * 0.9f;
@@ -53,13 +53,13 @@ public class ActionSystem : ISystem
                 return;
             }
             
-            GD.Print("Damage Event Spawned!");
+            GD.Print("Damage Spawned!");
                 
             var targetToken = targetTileEntity.Get<HasToken>().Entity;
 
             if (targetToken.Has<BelongsTo>(playerEntity)) return;
 
-            commands.Send(new DamageEvent() { Entity = targetTileEntity.Get<HasToken>().Entity, Amount = 1 });
+            commands.Send(new Damage() { Entity = targetTileEntity.Get<HasToken>().Entity, Amount = 1 });
             actions.Value -= token.Cost;
             token.Cycle();
             token.Scale = Vector2.One * 0.9f;

@@ -23,6 +23,6 @@ public class SpawnUISystem : Resource, ISystem
 
     private void OnTurnEndPressed()
     {
-        commands.Send<TurnEndEvent>();
+        commands.Send<TurnEnd>();
     }
 }

@@ -2,13 +2,13 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public struct TurnEndEvent { }
+public struct TurnEnd { }
 
 public class TurnEndSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        commands.Receive((TurnEndEvent e) =>
+        commands.Receive((TurnEnd e) =>
         {
             GD.Print("Turn End Pressed");
             
