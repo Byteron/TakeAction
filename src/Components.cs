@@ -1,7 +1,5 @@
-using System.Runtime.CompilerServices;
 using Godot;
 using RelEcs;
-using RelEcs.Godot;
 
 public struct BelongsTo { }
 
