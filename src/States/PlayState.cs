@@ -14,8 +14,8 @@ public class PlayState : GameState
             .Add(new ActionSystem());
 
         UpdateSystems
-            .Add(new MoveSystem())
-            .Add(new DamageSystem())
+            .Add(new MovedSystem())
+            .Add(new DamagedSystem())
             .Add(new TokenInfoSystem())
             .Add(new PlayerInfoSystem())
             .Add(new TurnEndSystem());

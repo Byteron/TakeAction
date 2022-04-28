@@ -2,17 +2,17 @@ using Godot;
 using RelEcs;
 using RelEcs.Godot;
 
-public struct Move
+public struct Moved
 {
     public Entity Entity;
     public (int, int) Cell;
 }
 
-public class MoveSystem : ISystem
+public class MovedSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        commands.Receive((Move e) =>
+        commands.Receive((Moved e) =>
         {
             GD.Print("Move Received!");
             var gameBoard = commands.GetElement<GameBoard>();

@@ -1,17 +1,17 @@
 using Godot;
 using RelEcs;
 
-public struct Damage
+public struct Damaged
 {
     public Entity Entity;
     public int Amount;
 }
 
-public class DamageSystem : ISystem
+public class DamagedSystem : ISystem
 {
     public void Run(Commands commands)
     {
-        commands.Receive((Damage e) =>
+        commands.Receive((Damaged e) =>
         {
             GD.Print("Damage Received!");
             
