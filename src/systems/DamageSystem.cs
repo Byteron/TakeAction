@@ -1,6 +1,5 @@
 using Godot;
 using RelEcs;
-using RelEcs.Godot;
 
 public struct Damage
 {

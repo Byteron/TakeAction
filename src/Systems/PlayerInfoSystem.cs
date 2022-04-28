@@ -1,8 +1,4 @@
-using System;
-using Godot;
 using RelEcs;
-using RelEcs.Godot;
-
 
 public class PlayerInfoSystem : ISystem
 {
